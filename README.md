@@ -1,4 +1,4 @@
-# 📄 ResumeGenie
+# 🧞 ResumeGenie
 
 <div align="center">
 
@@ -367,12 +367,10 @@ This project is licensed under the **MIT License**.
 ## 🗺️ Roadmap
 
 ### Planned Features
-- [ ] Cover letter generation with AI
+- [ ] LinkedIn profile import
 - [ ] Multiple resume versions management
 - [ ] User accounts and cloud storage
-- [ ] LinkedIn profile import
 - [ ] Custom template builder
-- [ ] Export to Word format
 - [ ] Mobile app (React Native)
 
 ### Version History
