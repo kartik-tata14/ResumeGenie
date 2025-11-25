@@ -1,0 +1,32 @@
+{
+    "name": "resume-genie-server",
+    "version": "1.0.0",
+    "description": "Backend server for Resume Genie - AI-Powered Resume Builder",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "keywords": [
+        "resume",
+        "ai",
+        "ats",
+        "job"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google/generative-ai": "^0.21.0",
+        "axios": "^1.6.7",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.1",
+        "express": "^4.18.2",
+        "mongoose": "^8.1.1",
+        "multer": "^1.4.5-lts.1",
+        "pdf-parse": "^1.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.3"
+    }
+}
