@@ -104,8 +104,8 @@ const CreateResume = () => {
                 formData.append('jobDescription', jobDescription);
             }
 
-            // API call will be implemented
-            const response = await fetch('http://localhost:5000/api/upload', {
+            // API call to Netlify serverless function
+            const response = await fetch('/api/upload', {
                 method: 'POST',
                 body: formData,
             });

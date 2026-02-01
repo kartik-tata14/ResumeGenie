@@ -26,7 +26,7 @@ const ExportResume = () => {
         setDownloadError('');
 
         try {
-            const response = await fetch('http://localhost:5000/api/export/latex', {
+            const response = await fetch('/api/export-latex', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ resumeData, selectedTemplate: currentTemplate })
