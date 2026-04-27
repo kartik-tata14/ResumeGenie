@@ -97,45 +97,21 @@ Six comprehensive tabs:
 
 ## 🚀 Installation
 
-### Prerequisites
+### Get Started on Netlify (2 minutes)
 
-- **Node.js** 18+ and npm
-- **Google Gemini API Key** ([Get one here](https://makersuite.google.com/app/apikey))
-- **Git** for cloning
+ResumeGenie is live and ready to use! **No installation needed.**
 
-### Quick Start
+1. **Visit Your Live Site**: Get your Netlify URL (e.g., `https://your-site.netlify.app`)
+2. **Deploy Your Own**: Fork the repository and follow [DEPLOYMENT.md](DEPLOYMENT.md) for a 5-minute setup
+3. **Make Code Changes**: Push to GitHub → Netlify auto-deploys in ~2-3 minutes
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/kartik-tata14/ResumeGenie.git
-cd ResumeGenie
-
-# 2. Install backend dependencies
-cd server
-npm install
-
-# 3. Create .env file
-echo "GEMINI_API_KEY=your_gemini_api_key_here" > .env
-echo "PORT=5000" >> .env
-
-# 4. Start backend (in terminal 1)
-npm start
-
-# 5. Install frontend dependencies (open new terminal)
-cd ../client
-npm install
-
-# 6. Start frontend (in terminal 2)
-npm run dev
-
-# 7. Open browser to http://localhost:3000
-```
+For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ---
 
 ## 💻 Usage
 
-### Quick Start Guide
+### For End Users
 
 1. **Upload Your Resume**
    - Click "Get Started" or "Create Resume"
@@ -160,6 +136,17 @@ npm run dev
    - In print dialog: Select "Save as PDF"
    - Choose A4 paper size, no margins
    - Save your professional resume!
+
+### For Developers
+
+**Development Workflow**:
+- Make code changes in your local editor
+- Commit with `git add . && git commit -m "description"`
+- Push with `git push origin main`
+- Netlify builds and deploys automatically (~2-3 minutes)
+- Test live on your Netlify URL
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for full setup and troubleshooting.
 
 ---
 
