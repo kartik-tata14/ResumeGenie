@@ -110,18 +110,25 @@ const CreateResume = () => {
                 body: formData,
             });
 
-            if (response.ok) {
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `Upload failed: ${response.statusText}`);
+            }
+
+            try {
                 const result = await response.json();
+                if (!result.data || !result.data.resumeData) {
+                    throw new Error('Invalid response: missing resume data');
+                }
                 console.log('Success:', result);
                 // Navigate to editor page with resume data
                 navigate('/editor', { state: { resumeData: result.data.resumeData } });
-            } else {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Upload failed');
+            } catch (parseError) {
+                throw new Error('Failed to process response: ' + parseError.message);
             }
         } catch (error) {
             console.error('Error:', error);
-            setErrors({ submit: 'Something went wrong. Please try again.' });
+            setErrors({ submit: error.message || 'Something went wrong. Please try again.' });
         } finally {
             setLoading(false);
         }

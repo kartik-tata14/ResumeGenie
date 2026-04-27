@@ -1,6 +1,6 @@
 [build]
   base = "client"
-  command = "npm install && npm run build"
+  command = "npm install && npm run build && cd ../netlify/functions && npm install"
   publish = "dist"
 
 [functions]
@@ -10,6 +10,12 @@
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+# SPA routing fallback (MUST be last redirect rule)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
 
 [[headers]]

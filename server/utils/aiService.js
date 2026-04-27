@@ -1,9 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-// Initialize Gemini AI
+// Initialize Gemini AI (environment variables injected by Netlify)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 /**
@@ -12,7 +9,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
  */
 export async function optimizeResume(resumeData, jobDescription = '') {
   if (!process.env.GEMINI_API_KEY) {
-    throw new Error('Gemini API key is required. Add GEMINI_API_KEY to your .env file.');
+    throw new Error('Gemini API key is not configured. Set GEMINI_API_KEY in Netlify environment variables.');
   }
 
   return await optimizeWithGemini(resumeData, jobDescription);

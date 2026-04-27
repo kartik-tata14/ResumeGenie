@@ -6,19 +6,22 @@ import ResumeEditor from './pages/ResumeEditor';
 import ExportResume from './pages/ExportResume';
 import Templates from './pages/Templates';
 import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
     return (
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/create" element={<CreateResume />} />
-                <Route path="/editor" element={<ResumeEditor />} />
-                <Route path="/export" element={<ExportResume />} />
-                <Route path="/templates" element={<Templates />} />
-            </Routes>
-        </Router>
+        <ErrorBoundary>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/create" element={<CreateResume />} />
+                    <Route path="/editor" element={<ResumeEditor />} />
+                    <Route path="/export" element={<ExportResume />} />
+                    <Route path="/templates" element={<Templates />} />
+                </Routes>
+            </Router>
+        </ErrorBoundary>
     );
 }
 

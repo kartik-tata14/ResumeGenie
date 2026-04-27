@@ -1,4 +1,5 @@
 import pdfParse from 'pdf-parse';
+import mammoth from 'mammoth';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -118,19 +119,19 @@ export async function parseResume(filePath, mimetype) {
         if (mimetype === 'application/pdf') {
             parsedData = await parsePDF(filePath);
             return extractResumeData(parsedData.text);
-        } else if (mimetype === 'application/msword' ||
-            mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-            // For DOC/DOCX, we'll use a simpler approach or rely on AI
-            // In production, you'd use mammoth or docx library
-            return {
-                rawText: 'DOC parsing not yet implemented. Please upload PDF or use AI to extract.',
-                name: '',
-                email: '',
-                phone: '',
-                skills: [],
-                experience: [],
-                education: []
-            };
+        } else if (mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+            // Handle DOCX files
+            try {
+                const docxBuffer = await fs.readFile(filePath);
+                const result = await mammoth.extractRawText({arrayBuffer: docxBuffer});
+                return extractResumeData(result.value);
+            } catch (error) {
+                console.error('DOCX parsing error:', error);
+                throw new Error('Failed to parse DOCX file');
+            }
+        } else if (mimetype === 'application/msword') {
+            // DOC files are harder to parse, recommend DOCX
+            throw new Error('DOC format is not supported. Please convert to DOCX or PDF.');
         }
 
         throw new Error('Unsupported file type');

@@ -26,15 +26,26 @@ const ExportResume = () => {
         setDownloadError('');
 
         try {
+            if (!resumeData) {
+                throw new Error('No resume data available');
+            }
+
             const response = await fetch('/api/export-latex', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ resumeData, selectedTemplate: currentTemplate })
             });
 
-            if (!response.ok) throw new Error('Failed to generate LaTeX file');
+            if (!response.ok) {
+                const errorText = await response.text().catch(() => 'Unknown error');
+                throw new Error(`Export failed: ${errorText}`);
+            }
 
             const blob = await response.blob();
+            if (blob.size === 0) {
+                throw new Error('Received empty file from server');
+            }
+
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -46,7 +57,7 @@ const ExportResume = () => {
             window.URL.revokeObjectURL(url);
         } catch (error) {
             console.error('LaTeX download error:', error);
-            setDownloadError('Failed to download LaTeX file');
+            setDownloadError(error.message || 'Failed to download LaTeX file');
         } finally {
             setDownloading(false);
         }
